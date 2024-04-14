@@ -1,0 +1,70 @@
+<!-- templates/scanning.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Port Scanner</title>
+</head>
+
+<body style="background-image: none;">
+    <div class="container cyan topBotomBordersOut">
+        <a href="/">HOME</a>
+        <a href="scanning">PORT SCANNING</a>
+        <a href="contact">CONTACT</a>
+    </div>
+    <div style="margin-left: 7%;">
+        <h1>Port Scanner</h1>
+        <div id="loader" class="loader" style="display: none;"></div> <!-- Add loader div -->
+        <form action="/scan" method="POST" id="scanForm">
+            <label for="target_ip">Target IP address:</label>
+            <input type="text" id="target_ip" name="target_ip"><br><br>
+            <label for="start_port">Starting port:</label>
+            <input type="number" id="start_port" name="start_port"><br><br>
+            <label for="end_port">Ending port:</label>
+            <input type="number" id="end_port" name="end_port"><br><br>
+            <button type="submit">Scan Ports</button>
+        </form>
+        <div id="scanResults">
+            <ul></ul>
+        </div>
+        
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery CDN -->
+    <script>
+        $(document).ready(function () {
+            $('#scanForm').submit(function (event) {
+                event.preventDefault(); // Prevent form submission
+                var formData = $(this).serialize(); // Serialize form data
+                $('#loader').show(); // Show the loader
+                $.ajax({
+                    type: 'POST',
+                    url: '/scan',
+                    data: formData,
+                    success: function (response) {
+                        $('#loader').hide(); // Hide the loader
+                        var resultsList = $('<ul>');
+                        $.each(response, function (port, result) {
+                            // Check if the result is not None or empty string before appending
+                            if (result && result.trim() !== "") {
+                                resultsList.append($('<li>').text(result));
+                                // resultsList.append($('<li>').text('Port ' + port + ' is ' + result));
+                            }
+                        });
+                        $('#scanResults').html(resultsList); // Update the page with the results
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Handle error
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>
