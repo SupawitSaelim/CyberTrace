@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from scanner.port_scanner import scan_port
 from flask import jsonify
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -31,6 +34,8 @@ def scan():
             results[port] = result
 
     return jsonify(results)
+
+
 
 
 

@@ -1,4 +1,3 @@
-<!-- templates/scanning.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +19,7 @@
         <div id="loader" class="loader" style="display: none;"></div> <!-- Add loader div -->
         <form action="/scan" method="POST" id="scanForm">
             <label for="target_ip">Target IP address:</label>
-            <input type="text" id="target_ip" name="target_ip"><br><br>
+            <input type="text" id="target_ip" name="target_ip" pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" title="Please enter a valid IP address" required><br><br>
             <label for="start_port">Starting port:</label>
             <input type="number" id="start_port" name="start_port"><br><br>
             <label for="end_port">Ending port:</label>
@@ -38,6 +37,11 @@
         $(document).ready(function () {
             $('#scanForm').submit(function (event) {
                 event.preventDefault(); // Prevent form submission
+                if (!isValidIPAddress($('#target_ip').val())) {
+                    // Display an alert if the entered IP address is not valid
+                    alert('Please enter a valid IP address.');
+                    return;
+                }
                 var formData = $(this).serialize(); // Serialize form data
                 $('#loader').show(); // Show the loader
                 $.ajax({
@@ -68,7 +72,13 @@
                 });
             });
         });
-    
+        
+        // Function to validate IP address format
+        function isValidIPAddress(ip) {
+            var ipRegex = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+            return ipRegex.test(ip);
+        }
+
     </script>
     
     
