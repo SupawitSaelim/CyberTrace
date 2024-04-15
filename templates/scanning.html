@@ -46,15 +46,20 @@
                     data: formData,
                     success: function (response) {
                         $('#loader').hide(); // Hide the loader
-                        var resultsList = $('<ul>');
-                        $.each(response, function (port, result) {
-                            // Check if the result is not None or empty string before appending
-                            if (result && result.trim() !== "") {
-                                resultsList.append($('<li>').text(result));
-                                // resultsList.append($('<li>').text('Port ' + port + ' is ' + result));
-                            }
-                        });
-                        $('#scanResults').html(resultsList); // Update the page with the results
+                        if ($.isEmptyObject(response)) {
+                            // If response is empty, display an alert to the user
+                            alert('No open ports found.');
+                        } else {
+                            var resultsList = $('<ul>');
+                            $.each(response, function (port, result) {
+                                // Check if the result is not None or empty string before appending
+                                if (result && result.trim() !== "") {
+                                    resultsList.append($('<li>').text(result));
+                                    // resultsList.append($('<li>').text('Port ' + port + ' is ' + result));
+                                }
+                            });
+                            $('#scanResults').html(resultsList); // Update the page with the results
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
@@ -63,8 +68,10 @@
                 });
             });
         });
-
+    
     </script>
+    
+    
 </body>
 
 </html>

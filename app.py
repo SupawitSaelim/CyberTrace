@@ -1,12 +1,9 @@
-# app.py
 from flask import Flask, render_template, request
 from scanner.port_scanner import scan_port
 from flask import jsonify
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-
-# Rest of the code remains the same...
 
 @app.route('/')
 def index():
