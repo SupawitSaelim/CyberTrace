@@ -253,10 +253,10 @@
 
 <body>
   <div class="container cyan topBotomBordersOut">
-    <a href="/">HOME</a>
-    <a href="scanning">PORT SCANNER</a>
-    <a href="getinfo">NETWORK INFO</a>
-    <a href="contact">CONTACT</a>
+    <a href="/" style="font-weight: 550;">HOME</a>
+    <a href="scanning" style="font-weight: 550;">PORT SCANNER</a>
+    <a href="getinfo" style="font-weight: 550;">NETWORK INFO</a>
+    <a href="contact" style="font-weight: 550;">CONTACT</a>
   </div>
   <br><br><br><br>
 
@@ -279,23 +279,27 @@
         <div class="screen-body">
           <div class="screen-body-item left">
             <div class="app-title">
-              <span>CONTACT</span>
-              <span>US</span>
+              <span>NETWORK</span>
+              <span>INFOMATION</span>
             </div>
-            <div class="app-contact">CONTACT INFO : +66 63 418 5373</div>
+            <div class="app-contact">Information of Network Interface</div>
           </div>
           <div class="screen-body-item">
             <div class="app-form">
               <div class="app-form-group">
-                <p class="app-form-control" style="font-family: 'Sukhumvit', sans-serif;">oatsupawit_159@outlook.com</p>
+                <p class="app-form-control" style="font-family: 'Sukhumvit', sans-serif;">Computer Name: {{ computer_name }}</p>
               </div>
               <div class="app-form-group">
-                <p class="app-form-control" style="font-family: 'Sukhumvit', sans-serif;">KMUTNB</p>
+                <p class="app-form-control" style="font-family: 'Sukhumvit', sans-serif;">Private IP Address: {{ private_ip }}</p>
               </div>
-             <br><br><br><br><br>
+              <div class="app-form-group">
+                <p class="app-form-control" style="font-family: 'Sukhumvit', sans-serif;">Network Prefix Length: {{ prefix }}</p>
+              </div>
+              <div class="app-form-group">
+                <p class="app-form-control" style="font-family: 'Sukhumvit', sans-serif;">MAC Address: {{ mac_address }}</p>
+              </div>
+             <br><br>
              <div class="app-form-group buttons">
-              <button class="app-form-button" onclick="openUrl('https://github.com/SupawitSaelim')">Github</button>
-              <button class="app-form-button" onclick="openUrl('https://www.facebook.com/oatmealll')">Facebook</button>
             </div>
             </div>
           </div>
@@ -303,12 +307,5 @@
       </div>
     </div>
 </body>
-<script>
-  function openUrl(url) {
-      var win = window.open(url, '_blank');
-      win.focus();
-  }
-</script>
-
 
 </html>

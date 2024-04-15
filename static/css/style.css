@@ -49,7 +49,7 @@ div.container
 {
     font-family: Raleway;
     margin: 0 auto;
-	padding: 2em 1em;
+	padding: 1.5em 1em;
 	text-align: center;
 }
 
@@ -87,7 +87,7 @@ div.container a
 
 .cyan
 {
-    background: #00bceb;
+    background: #2F8CDA;
 }
 
 .teal
@@ -575,14 +575,15 @@ form input,
 form button {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #00bceb;
+    border: 1px solid #2F8CDA;
     border-radius: 5px;
 }
 
 form button {
-    background-color: #00bceb;
+    background-color: #2F8CDA;
     color: #FFF;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Add some spacing and style to the list items */
